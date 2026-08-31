@@ -18,16 +18,19 @@ flowchart TB
     subgraph trust["Authentication & data access"]
         direction LR
         web["Static Web Apps<br/>Next.js frontend"]
+        app["Mobile appstore<br/>Flutter.dart frontend"]
         api["App Service<br/>ASP.NET Core API"]
         db["PostgreSQL<br/>Flexible server"]
     end
 
     idp -->|OIDC / access tokens| api
     web <-->|HTTPS| api
+    app <-->|HTTPS| api
     api <-->|Data access / queries| db
 
     class idp idp
     class web web
+    class app app
     class api api
     class db db
     class region region
